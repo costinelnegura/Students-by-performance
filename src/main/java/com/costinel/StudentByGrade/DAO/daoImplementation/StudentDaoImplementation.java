@@ -24,8 +24,8 @@ public class StudentDaoImplementation implements StudentDao {
 
     @Override
     public void bubbleSortStudents(List<String> sourceList) {
-        for(int i=0; i< sourceList.size() - 1; i++){
-            for(int j = i+1; j>0; j--){
+        for(var i=0; i< sourceList.size() - 1; i++){
+            for(var j = i+1; j>0; j--){
 
                 if((Double.parseDouble(sourceList.get(j).substring(sourceList.get(j).indexOf(",") + 1))) <
                         (Double.parseDouble(sourceList.get(j-1).substring(sourceList.get(j-1).indexOf(",") + 1)))){
@@ -46,16 +46,16 @@ public class StudentDaoImplementation implements StudentDao {
         if (list.size() < 2) {
             return list;
         }
-        int mid = list.size()/2;
+        var mid = list.size()/2;
         return merged(
                 sorted(list.subList(0, mid)),
                 sorted(list.subList(mid, list.size())));
     }
 
     private static List<String> merged(List<String> left, List<String> right) {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        List<String> merged = new ArrayList<String>();
+        var leftIndex = 0;
+        var rightIndex = 0;
+        var merged = new ArrayList<String>();
 
         while (leftIndex < left.size() && rightIndex < right.size()) {
             if ((Double.parseDouble(left.get(leftIndex).substring(left.get(leftIndex).indexOf(",") + 1)))
@@ -77,9 +77,9 @@ public class StudentDaoImplementation implements StudentDao {
             new File(path).mkdir();
         }
 
-        String orgName = file.getOriginalFilename();
-        String filePath = path + orgName;
-        File dest = new File(filePath);
+        var orgName = file.getOriginalFilename();
+        var filePath = path + orgName;
+        var dest = new File(filePath);
         file.transferTo(dest);
 
         return dest.getAbsoluteFile().toPath();
@@ -90,7 +90,7 @@ public class StudentDaoImplementation implements StudentDao {
         if(!new File(path).exists()){
             new File(path).mkdir();
         }
-        File file = new File(path + "sorted.txt");
+        var file = new File(path + "sorted.txt");
 
         Files.write(Path.of(String.valueOf(file)), list,Charset.defaultCharset());
       return file;

@@ -41,9 +41,9 @@ public class StudentController {
 
     @RequestMapping("/bubble_sort")
     public String bubbleSort(Model model){
-        Instant start = Instant.now();
+        var start = Instant.now();
         model.addAttribute("bubble_sorted_list", studentService.bubbleSortStudents());
-        Instant end = Instant.now();
+        var end = Instant.now();
         model.addAttribute("duration1", Duration.between(start, end).toNanos());
         model.addAttribute("duration2", Duration.between(start, end).toMillis());
         return "sort/bubble";
@@ -51,9 +51,9 @@ public class StudentController {
 
     @RequestMapping("/merge_sort")
     public String mergeSort(Model model){
-        Instant start = Instant.now();
+        var start = Instant.now();
         model.addAttribute("merge_sorted_list", studentService.mergeSortStudents());
-        Instant end = Instant.now();
+        var end = Instant.now();
         model.addAttribute("duration1", Duration.between(start, end).toNanos());
         model.addAttribute("duration2", Duration.between(start, end).toMillis());
         return "sort/merge";
@@ -61,9 +61,9 @@ public class StudentController {
 
     @RequestMapping("/heap_sort")
     public String heapSort(Model model){
-        Instant start = Instant.now();
+        var start = Instant.now();
         model.addAttribute("heap_sorted_list", studentService.heapSortStudents());
-        Instant end = Instant.now();
+        var end = Instant.now();
         model.addAttribute("duration1", Duration.between(start, end).toNanos());
         model.addAttribute("duration2", Duration.between(start, end).toMillis());
         return "sort/heap";
@@ -72,13 +72,13 @@ public class StudentController {
     @RequestMapping("/downloadSortedList")
     protected void downloadStudents(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        String filename = studentService.downloadFile().getName();
-        String filepath = studentService.downloadFile().getParent();
+        var out = response.getWriter();
+        var filename = studentService.downloadFile().getName();
+        var filepath = studentService.downloadFile().getParent();
         response.setContentType("APPLICATION/OCTET-STREAM");
         response.setHeader("Content-Disposition","attachment; filename=\"" + filename + "\"");
 
-        FileInputStream fileInputStream = new FileInputStream(filepath + "\\" + filename);
+        var fileInputStream = new FileInputStream(filepath + "\\" + filename);
 
         int i;
         while ((i=fileInputStream.read()) != -1) {

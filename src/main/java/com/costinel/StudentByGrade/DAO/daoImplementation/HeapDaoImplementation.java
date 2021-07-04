@@ -20,7 +20,7 @@ public class HeapDaoImplementation implements HeapDao {
     @Override
     public void insert(List<String> list) {
 
-        for(String string : list){
+        for(var string : list){
             temp.add(size, string);
             fixHeapAbove(size);
             size++;
@@ -42,7 +42,7 @@ public class HeapDaoImplementation implements HeapDao {
 
     @Override
     public void fixHeapAbove(int index) {
-        String newValue = temp.get(index);
+        var newValue = temp.get(index);
         while (index > 0 && Double.parseDouble(newValue.substring(newValue.indexOf(",") + 1)) >
                 Double.parseDouble(temp.get(getParent(index)).substring(temp.get(getParent(index)).indexOf(",") + 1))) {
 
@@ -58,8 +58,8 @@ public class HeapDaoImplementation implements HeapDao {
         int childToSwapIndex;
 
         while (index <= lastHeapIndex) {
-            int leftChildIndex = getChild(index, true);
-            int rightChildIndex = getChild(index, false);
+            var leftChildIndex = getChild(index, true);
+            var rightChildIndex = getChild(index, false);
 
             if (leftChildIndex <= lastHeapIndex) {
                 if (rightChildIndex > lastHeapIndex) {
@@ -74,7 +74,7 @@ public class HeapDaoImplementation implements HeapDao {
                 if (Double.parseDouble(temp.get(index).substring(temp.get(index).indexOf(",") + 1)) <
                         Double.parseDouble(temp.get(childToSwapIndex).substring(temp.get(childToSwapIndex).indexOf(",") + 1))) {
 
-                    String temp1 = temp.get(index);
+                    var temp1 = temp.get(index);
                     temp.set(index, temp.get(childToSwapIndex));
                     temp.set(childToSwapIndex, temp1);
 
@@ -93,10 +93,10 @@ public class HeapDaoImplementation implements HeapDao {
     @Override
     public void heapSort() {
 
-        int lastHeapIndex = size - 1;
+        var lastHeapIndex = size - 1;
 
-        for (int i = 0; i < lastHeapIndex; i++) {
-            String temp1 = temp.get(0);
+        for (var i = 0; i < lastHeapIndex; i++) {
+            var temp1 = temp.get(0);
             temp.set(0, temp.get(lastHeapIndex - i));
             temp.set(lastHeapIndex - i, temp1);
 
